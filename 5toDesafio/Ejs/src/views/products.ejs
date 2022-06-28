@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Ejs</title>
+</head>
+
+<body>
+    <Nav>
+        <ul>
+            <li>
+                <a href="/">Formulario</a>
+            </li>
+        </ul>
+    </Nav>
+    <div style="background-color: rgb(255, 140, 0)">
+        <% productos.forEach(prod=> { %>
+            <div style="background-color: rgb(190, 249, 27)">
+                <h3>
+                    <%- prod.title %>
+                </h3>
+                <p>Precio:<%- prod.price %>
+                </p>
+                <p>Precio:<%- prod.id %>
+                </p>
+
+                <img src="<%- prod.thumbnail %>" style="width: 300px; height: 300px; object-fit: contain">
+            </div>
+            <% }) %>
+    </div>
+</body>
+
+</html>

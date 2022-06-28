@@ -1,0 +1,11 @@
+{{> nav}}
+
+<div style="background-color: rgb(255, 140, 0)">
+	{{#each productos}}
+		<div style="background-color: rgb(190, 249, 27)">
+			<h3>{{title}}</h3>
+			<p>Precio: {{price}}</p>
+			<img src="{{thumbnail}}" style="width: 300px; height: 300px; object-fit: contain" />
+		</div>
+	{{/each}}
+</div>

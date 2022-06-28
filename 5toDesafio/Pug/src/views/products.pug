@@ -1,0 +1,20 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Productos Pug
+    body 
+        nav(style= "background-color: bisque")
+            ul
+                li 
+                    a(href="/") Formulario
+
+        div(style="background-color: aqua")
+                each val in productos
+                    div(style= "background-color: bisque")
+                        h3= val.title
+                        p Precio: #{val.price}
+                        p Id: #{val.id}
+                        img(src= `${val.thumbnail}` style= "width: 300px; height: 300px; object-fit: contain")
