@@ -1,0 +1,30 @@
+let productos = [
+	{
+		tittle: "nombre1",
+		price: 1000,
+		thumbnail:
+			"https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+		id: 1,
+	},
+	{
+		tittle: "nombre2",
+		price: 2000,
+		thumbnail:
+			"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=698&q=80",
+		id: 2,
+	},
+	{
+		tittle: "nombre3",
+		price: 3000,
+		thumbnail:
+			"https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
+		id: 3,
+	},
+];
+
+let mensajes = [];
+
+module.exports = {
+	productos,
+	mensajes,
+};

@@ -6,20 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socket.io</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 
-    <h1>aaaaaaaaaaaa</h1>
+    <div class="ContFormText">
+        <form id="formProd">
+            <input type="text" placeholder="Name Prod" id="ProdNameInput">
+            <input type="number" placeholder="Price Prod" id="ProdPriceInput">
+            <input type="text" placeholder="Img Prod" id="ProdThumbnailInput">
+            <input type="submit" value="Enviar" class="submit">
+        </form>
+    </div>
 
-    <form id="formCont">
-        <input type="text" placeholder="User" id="userInput">
-        <input type="text" placeholder="Text..." id="textInput">
-        <input type="submit" value="Enviar">
-    </form>
+    <div id="ProdTable"></div>
+    <div class="ContFormText">
+        <section>
+            <form id="formText">
+                <input type="email" placeholder=" mail@gmail.com" id="userInput">
+                <br>
+                <input type="text" placeholder=" Text..." id="textInput">
+                <input type="submit" value="Enviar" class="submit">
+            </form>
+            <ul id="textPool"></ul>
+        </section>
+    </div>
 
-    <ul id="textPool"></ul>
 
+
+    <script src="./ejs.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="./cliente.socket.js"></script>
 </body>
