@@ -59,7 +59,7 @@ const pintarProd = async (prod) => {
 
 	ProdTable.innerHTML = "";
 
-	prod.forEach((product) => {
+	await prod.forEach((product) => {
 		const html = ejs.render(datoHbs, product);
 		ProdTable.innerHTML += html;
 	});

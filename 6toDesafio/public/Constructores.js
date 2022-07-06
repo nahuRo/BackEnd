@@ -54,34 +54,6 @@ class Contenedor {
 			console.log(`Aun no generas el txt de Productos :( !!`);
 		}
 	}
-	// async getById(id) {
-	// 	try {
-	// 		const objetos = JSON.parse(await fs.promises.readFile(`./${this.name}`, "utf-8"));
-	// 		const buscado = objetos.find((obj) => obj.id === id);
-	// 		return buscado || null;
-	// 	} catch (error) {
-	// 		console.log(`Hubo un error en - getById: ${error}`);
-	// 	}
-	// }
-	// async deleteById(id) {
-	// 	try {
-	// 		const objetos = JSON.parse(await fs.promises.readFile(`./${this.name}`, "utf-8"));
-	// 		const newArray = objetos.filter((item) => item.id !== id);
-	// 		await fs.promises.writeFile(`./${this.name}`, JSON.stringify(newArray));
-	// 		return `Objeto con el id --> ${id} (eliminado)`;
-	// 	} catch (error) {
-	// 		console.log(`Hubo un error en - deleteById: ${error}`);
-	// 	}
-	// }
-	// async deleteAll() {
-	// 	try {
-	// 		this.products = [];
-	// 		await fs.promises.writeFile(`./${this.name}`, JSON.stringify(this.products));
-	// 		return `Array borrado --> ${this.products.length}`;
-	// 	} catch (error) {
-	// 		console.log(`Hubo un error en - deleteAll: ${error}`);
-	// 	}
-	// }
 }
 
 module.exports = {

@@ -9,6 +9,10 @@ const { productos, mensajes } = require("../public/objects/ArrayProdDef");
 // traigo los constructores para instaciar
 const { GeneratorText, GeneratorProd } = require("../public/Constructores");
 
+// // Middleware
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+
 // ---- instacio
 const ObjProd = new GeneratorProd("Productos.txt", productos); // instancio una clase Contenedor para generar un txt
 const ObjText = new GeneratorText("Mensajes.txt", mensajes);
@@ -27,34 +31,30 @@ app.use(express.static(path.join(__dirname, "../public")));
 
 // estableciendo conexion desde el server (back)
 io.on("connection", async (socket) => {
-	const listProdTxt = await ObjProd.getAll();
-	const listMsgTxt = await ObjText.getAll();
+	let listProdTxt = await ObjProd.getAll();
+	let listMsgTxt = await ObjText.getAll();
 
-	if (listMsgTxt) mensajes.push(...listMsgTxt);
-	if (listProdTxt) productos.push(...listProdTxt);
+	console.log("se conecto un nuevo cliente", socket.id);
 
-	const { id } = socket;
-	console.log("se conecto un nuevo cliente", id);
-
-	// atajo la info de los mensajes del socket
-	socket.on("cliente:mensaje", async (messageInfo) => {
-		await ObjText.save(messageInfo); // escribo el sms en un txt
-
-		mensajes.push(messageInfo); // messageInfo es un objeto
-
-		io.emit("server:mensaje", mensajes);
-	});
-
-	socket.emit("server:mensaje", mensajes); // para cuando se conecte ese nuevo socket, le envio los mensajes del chat
+	// para cuando se conecte ese nuevo socket, le envio los mensajes y productos que hay hasta el momento
+	socket.emit("server:productos", await listProdTxt);
+	socket.emit("server:mensaje", await listMsgTxt);
 
 	// atajo la info de los productos del socket
 	socket.on("client:productos", async (newProductos) => {
 		await ObjProd.save(newProductos); // escribo productos en un txt
 
-		productos.push(newProductos);
+		listProdTxt = await ObjProd.getAll();
 
 		io.emit("server:productos", productos);
 	});
 
-	socket.emit("server:productos", productos);
+	// atajo la info de los mensajes del socket
+	socket.on("cliente:mensaje", async (messageInfo) => {
+		await ObjText.save(messageInfo); // escribo el sms en un txt y en el metodo pusheo el messageInfo a le array de mensajes
+
+		listMsgTxt = await ObjText.getAll();
+
+		io.emit("server:mensaje", listMsgTxt); // le paso todos los emnsajes a ..(clientServer)
+	});
 });
