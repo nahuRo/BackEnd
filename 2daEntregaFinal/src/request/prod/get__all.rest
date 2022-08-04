@@ -1,3 +1,6 @@
 // Me permite listar todos los productos 
 //disponibles(si le paso un id que no tengo) ó un producto por su id 
-GET http://localhost:8080/Api/productos/62
+GET http://localhost:8080/Api/productos/62eb41bc8c1cc9b93703b8dc
+// Para ingresar productos, ingresar en la url
+// MongoDB --> id del producto sino trae todos
+// Firebase --> id del producto sino trae todos

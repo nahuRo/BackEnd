@@ -1,7 +1,13 @@
 // Vacía un carrito y lo elimina.
-DELETE http://localhost:8080/Api/carrito/2
+DELETE http://localhost:8080/Api/carrito/Dos
+// Para borrar ingresar en la url
+// MongoDB --> tittle del carrito
+// Firebase --> id generado por firebase
 
 ###
 
 // Eliminar un producto del carrito por su id de carrito y de producto
-DELETE http://localhost:8080/Api/carrito/1/productos/6
+DELETE http://localhost:8080/Api/carrito/Uno/productos/2Prod
+// Para borrar ingresar en la url
+// MongoDB --> tittle del carrito y del producto
+// Firebase --> id generado por firebase y tittle del producto

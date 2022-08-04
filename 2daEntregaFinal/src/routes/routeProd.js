@@ -2,17 +2,16 @@
 import { Router } from "express";
 const route = Router();
 
-// controllers
-import { getAllProducts, createProduct, updateOneProduct, deleteOneProduct } from "../controllers/productsControllers.js";
-
 // administracion
 import { isAdmin, permiso } from "../utils/Admin&URL.js";
 
-// ---- Rutas para productos ----
+// controllers
+import { getAllProducts, createProduct, updateOneProduct, deleteOneProduct } from "../controllers/productsControllers.js";
 
+// ---- Rutas para productos ----
 route
 	// Me permite listar todos los productos disponibles ó un producto por su id (disponible para usuarios y administradores)
-	.get("/:id", getAllProducts)
+	.get("/:id", isAdmin(permiso), getAllProducts)
 
 	// Para incorporar productos al listado (disponible para administradores)
 	.post("/", isAdmin(permiso), createProduct)

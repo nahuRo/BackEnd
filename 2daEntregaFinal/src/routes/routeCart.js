@@ -13,23 +13,24 @@ import {
 	createProdForOneCart,
 	deleteOneProdFromOneCart,
 } from "../controllers/cartsControllers.js";
+
 // ---- Rutas para cart ----
 
 route
 	// POST: '/' - Crea un carrito y devuelve su id.
-	.post("/", isAdmin(permiso), createOneCart)
+	.post("/:name", isAdmin(permiso), createOneCart)
 
 	// DELETE: '/:id' - Vacía un carrito y lo elimina.
-	.delete("/:id", isAdmin(permiso), deleteOneCart)
+	.delete("/:name", isAdmin(permiso), deleteOneCart)
 
 	// GET: '/:id/productos' - Me permite listar todos los productos guardados en el carrito
-	.get("/:id/productos", isAdmin(permiso), getAllProdFromOneCart)
+	.get("/:name/productos", isAdmin(permiso), getAllProdFromOneCart)
 
 	// POST: '/:id/productos' - Para incorporar productos al carrito por su id de producto
-	.post("/:id/productos", isAdmin(permiso), createProdForOneCart)
+	.post("/:name/productos", isAdmin(permiso), createProdForOneCart)
 
 	// DELETE: '/:id/productos/:id_prod' - Eliminar un producto del carrito por su id de carrito y de producto
-	.delete("/:id/productos/:id_prod", isAdmin(permiso), deleteOneProdFromOneCart)
+	.delete("/:name/productos/:name_prod", isAdmin(permiso), deleteOneProdFromOneCart)
 
 	// Atajo URLs no validas
 	.use((req, res) => {

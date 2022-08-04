@@ -1,11 +1,15 @@
 // Actualiza un producto por su id 
-PUT  http://localhost:8080/Api/productos/6 
+PUT  http://localhost:8080/Api/productos/62eb41bc8c1cc9b93703b8dc
 Content-Type: application/json
 
 {
-    "tittle": "enviame asi me actulizo",
+    "tittle": "actualizado",
     "price": "1000",
     "thumbnail": "https://images.unsplash.com/photo-1556906781-9a412961c28c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
     "descripcion": "Zapatillas",
     "stock": "9"
 }
+
+// Para ingresar productos, ingresar en la url
+// MongoDB --> id del producto
+// Firebase --> id del producto

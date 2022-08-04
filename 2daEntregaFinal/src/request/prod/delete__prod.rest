@@ -1,3 +1,7 @@
 // Borra un producto por su id 
-DELETE http://localhost:8080/Api/productos/6 
+DELETE http://localhost:8080/Api/productos/62eb41c18c1cc9b93703b8de
+
+// Para ingresar productos, ingresar en la url
+// MongoDB --> id del producto 
+// Firebase --> id del producto
 

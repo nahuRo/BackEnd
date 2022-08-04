@@ -1,2 +1,6 @@
 // Me permite listar todos los productos guardados en el carrito
-GET http://localhost:8080/Api/carrito/1/productos
+GET http://localhost:8080/Api/carrito/Uno/productos
+// Para ingresar productos, ingresar en la url
+// MongoDB --> nombre del carrito 
+// Firebase --> id del carrito
+###
