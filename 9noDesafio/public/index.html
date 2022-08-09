@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <div class="ContFormText">
+        <form id="formProd">
+            <input type="text" placeholder="Name Prod" id="ProdNameInput" name="tittle">
+            <input type="number" placeholder="Price Prod" id="ProdPriceInput" name="price">
+            <input type="text" placeholder="Img Prod" id="ProdThumbnailInput" name="thumbnail">
+            <input type="text" placeholder="Img Descripcion" id="ProdDescripcionInput" name="descripcion">
+            <input type="number" placeholder="Stock Prod" id="ProdStockInput" name="stock" id="Stock">
+            <input type="submit" value="Enviar" class="submit">
+        </form>
+    </div>
+
+    <div id="ProdTable"></div>
+
+    <div class="ContFormText">
+        <section>
+            <form id="formText">
+                <input type="email" placeholder=" mail@gmail.com" id="userInput">
+                <br>
+                <input type="text" placeholder="user name" id="userNameInput">
+                <br>
+                <input type="text" placeholder="user last name" id="userLastInput">
+                <br>
+                <input type="number" placeholder="user age" id="userAgeInput">
+                <br>
+                <input type="text" placeholder="user alias" id="userAliasInput">
+                <br>
+                <input type="text" placeholder="user avatar" id="userAvatarInput">
+                <br>
+                <input type="text" placeholder=" Text..." id="textInput">
+                <input type="submit" value="Enviar" class="submit">
+            </form>
+            <ul id="textPool"></ul>
+            <div>
+                <ul id="normInfo"></ul>
+            </div>
+        </section>
+    </div>
+
+
+
+    <script src="./ejs.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./cliente.socket.js"></script>
+</body>
+
+</html>
