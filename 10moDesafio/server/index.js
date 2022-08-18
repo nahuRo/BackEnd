@@ -10,9 +10,9 @@ import { ConnectionDB } from "./database/config/configMongo.js";
 import { smsClassMongo, ProdClass } from "./utils/constructores.js";
 import { cartSchema } from "./database/models/msgModel.js";
 
-// import session from "express-session";
-// import mongoStore from "connect-mongo";
-// import cookieParser from "cookie-parser";
+import session from "express-session";
+import mongoStore from "connect-mongo";
+import cookieParser from "cookie-parser";
 
 const app = express();
 //
@@ -91,10 +91,6 @@ io.on("connection", async (socket) => {
 });
 
 app.use("/", rutas);
-// app.use("/", (req, res) => {
-// 	req.session.user = req.query.name;
-// 	res.send("hola");
-// });
 
 // Atajo URLs no validas
 app.use((req, res) => {

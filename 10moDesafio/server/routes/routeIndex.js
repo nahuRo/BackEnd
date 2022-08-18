@@ -2,18 +2,21 @@
 import { Router } from "express";
 const route = Router();
 
-import session from "express-session";
-import mongoStore from "connect-mongo";
-import cookieParser from "cookie-parser";
-
 import { getProdTest } from "../controllers/controller.js";
 
 route
 	//login
-	.use("/", (req, res) => {
-		const { user } = req.body;
-		req.session.user = user;
-		res.send(user);
+	.post("/login", (req, res) => {
+		const { userName } = req.body;
+		req.session.user = userName;
+		req.session.admin = true;
+		console.log(req.session);
+		res.send(`usuario ${req.session.user} logeado`);
+	})
+
+	//logOut
+	.get("/logout", (req, res) => {
+		req.session.destroy();
 	})
 
 	// ruta para traer los productos generador con faker.js

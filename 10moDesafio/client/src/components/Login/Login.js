@@ -1,21 +1,25 @@
-import socket from "../socket";
-import { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
-	const [user, setUser] = useState([]);
-
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(user);
+		const data = await axios.post("http://localhost:8080/login", {
+			userName: e.target.input.value,
+		});
+		console.log(data);
+		console.log(data.data);
 	};
-	// socket.on("server:mensaje", (messageArray) => setMsg(messageArray));
-	socket.emit("cliente:mensaje", "holaaaa desde cliente");
+
 	return (
 		<>
-			{/* <div>{msg}</div> */}
+			<div>
+				<h1>{}</h1>
+			</div>
 			<form onSubmit={handleSubmit}>
-				<label for="input">Ingrese el nombre de usuario</label>
-				<input type="text" id="input" onChange={(e) => setUser(e.target.value)} />
+				<label>
+					Ingrese el nombre de usuario :
+					<input type="text" name="input" />
+				</label>
 				<button>send</button>
 			</form>
 		</>
