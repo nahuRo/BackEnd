@@ -1,0 +1,15 @@
+.container {
+	background-color: aqua;
+	padding: 1rem;
+	color: black;
+}
+
+.links > a {
+	text-decoration: none;
+	margin: 1rem;
+}
+.notUser {
+	background-color: rgb(140, 45, 45);
+	padding: 1rem;
+	margin: 0;
+}

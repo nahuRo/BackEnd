@@ -35,7 +35,7 @@ export class smsClassMongo {
 			await item.save();
 			return console.log("mensaje guardado");
 		} catch (error) {
-			console.log(`Hubo un error en - save PRODUCT Cart: ${error}`);
+			console.log(`Hubo un error en - save SMSCart: ${error}`);
 		}
 	}
 	async getAll() {
@@ -43,6 +43,26 @@ export class smsClassMongo {
 			return await this.collection.find();
 		} catch (error) {
 			console.log(`Hubo un error en - getById: ${error}`);
+		}
+	}
+}
+
+export class sessClassMongo {
+	constructor(nameCollection, schema) {
+		this.collection = mongoose.model(nameCollection, schema);
+	}
+	async getAll() {
+		try {
+			return await this.collection.find();
+		} catch (error) {
+			console.log(`Hubo un error en - getById Session: ${error}`);
+		}
+	}
+	async deleteSession(id) {
+		try {
+			return await this.collection.findOneAndDelete(id);
+		} catch (error) {
+			console.log(`Hubo un error en - getById Session: ${error}`);
 		}
 	}
 }

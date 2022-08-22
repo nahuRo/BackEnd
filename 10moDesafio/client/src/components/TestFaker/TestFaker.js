@@ -1,19 +1,22 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import style from "./TestFake.module.css";
 
 const TestFaker = () => {
 	const [faker, setFaker] = useState([]);
 
-	const getTetsData = async () => {
-		const { data } = await axios.get("http://localhost:8080/productos-test");
-		setFaker(data);
-	};
+	useEffect(() => {
+		(async () => {
+			const { data } = await axios.get("http://localhost:8080/productos-test");
+			setFaker(data);
+		})();
+	}, []);
+
+	if (faker.length === 0) return <h1>Loading</h1>;
 
 	return (
 		<div className={style.container}>
 			<h1>Objetos de Faker.js</h1>
-			<button onClick={getTetsData}>traer productos faker</button>
 			<div>
 				<table>
 					<thead>

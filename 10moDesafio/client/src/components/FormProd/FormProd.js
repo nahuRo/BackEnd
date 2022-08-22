@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { SocketInfoContext } from "../../context/SocketsInfoContext";
 import socket from "../socket";
 import style from "./Form.module.css";
 
 const FormProd = () => {
-	const [prod, setProd] = useState([]);
+	const { prod } = useContext(SocketInfoContext);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -19,12 +20,6 @@ const FormProd = () => {
 
 		socket.emit("client:productos", data);
 	};
-
-	useEffect(() => {
-		socket.on("server:productos", (productos) => {
-			setProd(productos);
-		});
-	}, []);
 
 	return (
 		<div className={style.container}>
@@ -63,11 +58,10 @@ const FormProd = () => {
 					<button>send</button>
 				</form>
 			</div>
-
 			<div>
 				<h1>Lista de Productos</h1>
 				<div>
-					<table>
+					<table className={style.table}>
 						<thead>
 							<tr>
 								<th>Nombre</th>
@@ -83,7 +77,9 @@ const FormProd = () => {
 								<tr key={item.id}>
 									<th>{item.tittle}</th>
 									<th>{item.price}</th>
-									<th>{item.thumbnail}</th>
+									<th>
+										<img src={item.thumbnail} alt={item.tittle} />
+									</th>
 									<th>{item.stock}</th>
 									<th>{item.descripcion}</th>
 									<th>{item.codeBar}</th>

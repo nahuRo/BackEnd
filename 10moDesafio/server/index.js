@@ -7,7 +7,7 @@ import { Server as IOServer } from "socket.io";
 import { config__MariaDB } from "./database/config/configDBs.js";
 import { ConnectionDB } from "./database/config/configMongo.js";
 // traigo los constructores para instaciar
-import { smsClassMongo, ProdClass } from "./utils/constructores.js";
+import { smsClassMongo, ProdClass, sessClassMongo } from "./utils/constructores.js";
 import { cartSchema } from "./database/models/msgModel.js";
 
 import session from "express-session";

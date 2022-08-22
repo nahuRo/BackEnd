@@ -12,5 +12,3 @@ export const productsTest = () => {
 	}
 	return productos;
 };
-
-// console.log(productsTest());

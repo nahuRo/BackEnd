@@ -1,9 +1,10 @@
 import socket from "../socket";
 import style from "./Form.module.css";
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { SocketInfoContext } from "../../context/SocketsInfoContext";
 
 const FormMsg = () => {
-	const [msg, setMsg] = useState([]);
+	const { msg } = useContext(SocketInfoContext);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -20,16 +21,8 @@ const FormMsg = () => {
 			text: e.target.text.value,
 		};
 
-		// setMsg(data);
-
 		socket.emit("cliente:mensaje", data);
 	};
-
-	useEffect(() => {
-		socket.on("server:mensaje", (mensajes) => {
-			setMsg(mensajes);
-		});
-	}, []);
 
 	return (
 		<div className={style.container}>
