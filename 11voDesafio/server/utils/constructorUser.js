@@ -7,8 +7,8 @@ class userClassMongo {
 	async save(object) {
 		try {
 			const item = new this.collection(object);
-			await item.save();
-			return console.log("---- USER REGISTERED ----");
+			return await item.save();
+			// return console.log("---- USER REGISTERED ----");
 		} catch (error) {
 			console.log(`Hubo un error en - save User: ${error}`);
 		}
@@ -18,6 +18,13 @@ class userClassMongo {
 			return await this.collection.find();
 		} catch (error) {
 			console.log(`Hubo un error en - getAll User: ${error}`);
+		}
+	}
+	async UserById(id) {
+		try {
+			return await this.collection.findById(id);
+		} catch (error) {
+			console.log(`Hubo un error en - UserById User: ${error}`);
 		}
 	}
 }
