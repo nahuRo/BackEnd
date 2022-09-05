@@ -1,0 +1,38 @@
+<%- layout('layouts/main.ejs') %>
+
+    <div class="card card-body">
+        <h3>
+            Datos
+        </h3>
+        <p>
+            Argumentos de entrada:
+
+            <% if (argumentsEntri._.length> 0 ) {%>
+
+                <% argumentsEntri._.forEach(function(arg){ %>
+                    <%= arg%>
+                        <% }); %>
+
+                            <% } else {%>
+                                sin argumentos de entrada
+                                <% } %>
+        </p>
+        <p>
+            Sistema operativo: <%= systemName %>
+        </p>
+        <p>
+            Version de Node.js: <%= nodeV %>
+        </p>
+        <p>
+            Memoria total reservada: <%= memory %>
+        </p>
+        <p>
+            Path de ejecución: <%= pathEjecusion %>
+        </p>
+        <p>
+            Process id: <%= idPross %>
+        </p>
+        <p>
+            Carpeta del proyecto: <%= ruta %>
+        </p>
+    </div>
