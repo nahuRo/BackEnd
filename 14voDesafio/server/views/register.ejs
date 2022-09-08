@@ -1,0 +1,36 @@
+<%- layout('layouts/main.ejs') %>
+
+
+
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="card mt-4 text-center">
+                <div class="card-header">
+                    Registrarse
+                </div>
+                <div class="card-body">
+                    <form action="/register" method="post">
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" placeholder="password" class="form-control">
+                        </div>
+                        <button class="btn btn-primary w-100 mt-4">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <button id="boton">Login</button> -->
+    <!-- <script>
+
+        document.getElementById("boton").addEventListener("click", () => redireccionar('/login'))
+
+        function redireccionar(url) {
+            location.href = url
+        }
+
+    </script> -->
