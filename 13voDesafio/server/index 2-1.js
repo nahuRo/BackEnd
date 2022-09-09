@@ -25,7 +25,7 @@ const args = yargs
 		m: "modo",
 	})
 	.default({
-		puerto: 8081,
+		puerto: 8082,
 		modo: "fork",
 	}).argv;
 
@@ -99,12 +99,14 @@ if (cluster.isPrimary && args.modo === "cluster") {
 		cluster.fork();
 	});
 } else {
+	console.log("server 2");
+
 	console.log(`Worker ${process.pid} started`);
 
-	app.listen(args.puerto, (err) => {
+	app.listen(3000, (err) => {
 		err ? console.log(err) : console.log(`sevidor iniciado en  http://localhost:${args.puerto}/, worked: ${process.pid}`);
 	});
 
 	// rutas
-	app.use(require("./routes/index"));
+	app.use("/api/random", require("./routes/index"));
 }

@@ -19,7 +19,6 @@ const isAuthenticated = (req, res, next) => {
 
 	res.redirect("/login");
 };
-
 const yargs = require("yargs")(process.argv.slice(2));
 const args = yargs
 	.alias({
