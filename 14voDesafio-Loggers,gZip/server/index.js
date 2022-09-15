@@ -14,20 +14,28 @@ const engine = require("ejs-mate");
 
 const flash = require("connect-flash");
 
-const cluster = require("cluster");
-const { cpus } = require("os");
-
 const yargs = require("yargs")(process.argv.slice(2));
 
 const args = yargs
 	.alias({
 		p: "puerto",
-		m: "modo",
 	})
 	.default({
 		puerto: 8080,
-		modo: "FORK",
 	}).argv;
+
+const log4js = require("log4js");
+
+log4js.configure({
+	appenders: {
+		miLoggerConsole: { type: "console" },
+	},
+	categories: {
+		default: { appenders: ["miLoggerConsole"], level: "info" },
+	},
+});
+
+const loggerInfo = log4js.getLogger("default");
 
 // configuraciones ejs
 app.set("views", path.join(__dirname, "./views"));
@@ -72,59 +80,20 @@ app.use((req, res, next) => {
 	next();
 });
 
+// middleware de desafio
+app.use((req, res, next) => {
+	loggerInfo.info(req.method, req.url);
+	next();
+});
+
 // ----
 
 // conexion a la DB
-// ConnectionDB();
+ConnectionDB();
 
-// if (args.modo === "CLUSTER" && cluster.isPrimary) {
-// 	cpus.map(() => {
-// 		cluster.fork(); // creo un worker por cada nucleo del cpu
-// 	});
-
-// 	cluster.on("exit", (worker) => {
-// 		console.log(`worker: ${worker.process.pid} died`);
-
-// 		cluster.fork(); // creo un worker por cada nucleo del cpu
-// 	});
-// } else {
-// 	// rutas
-// 	app.use(require("./routes/index"));
-
-// 	app.listen(args.puerto, (err) => {
-// 		err ? console.log(err) : console.log(`sevidor iniciado en http://localhost:${args.puerto}/`);
-// 	});
-// }
-const numCPUs = cpus().length;
-
-app.get("/", (req, res) => {
-	console.log(`worker: ${process.pid}`);
-	for (let i = 0; i < 1e9; i++) {}
-	res.send("hola");
-	cluster.worker.kill(); // mato un worker
+app.listen(args.puerto, (err) => {
+	err ? console.log(err) : console.log(`sevidor iniciado en http://localhost:${args.puerto}/`);
 });
-console.log("cluster", cluster.isPrimary);
-if (cluster.isPrimary) {
-	console.log(`Primary ${process.pid} is running`);
 
-	// Fork workers.
-	for (let i = 0; i < numCPUs; i++) {
-		cluster.fork();
-		console.log("nuevo worker");
-	}
-
-	// metodo que se ejecuta cuando un worker se muere o lo mato
-	// When any of the workers die the cluster module will emit the 'exit' event.
-	cluster.on("exit", (worker, code, signal) => {
-		console.log(`worker ${worker.process.pid} died`);
-
-		// creo un worker
-		cluster.fork();
-	});
-} else {
-console.log(`Worker ${process.pid} started`);
-
-app.listen(3000, (err) => {
-	err ? console.log(err) : console.log(`sevidor iniciado en http://localhost:3000/, worked: ${process.pid}`);
-});
-}
+// rutas
+app.use(require("./routes/index"));
