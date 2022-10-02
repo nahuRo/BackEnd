@@ -33,7 +33,7 @@ passport.use(
 		},
 		async (req, username, password, done) => {
 			// en este callback va, lo que voy a hacer con esos datos del objeto anterior
-			// en el req, puedo usar los demas campos del fomrulario, lo traigo por si quiero hacer algo con esos datos
+			// en el req, puedo usar los demas campos del formulario, lo traigo por si quiero hacer algo con esos datos
 
 			// logica par registrar un usuario en la base de datos
 			const users = await userDB.getAll();
@@ -41,11 +41,14 @@ passport.use(
 
 			if (buscado) return done(null, false, req.flash("registerMsg", "The Email is already taken"));
 
-			const userData = { email: username, password: encriptar(password) };
-			console.log(userData);
+			let data = {
+				...req.body,
+				password: encriptar(password),
+				// esparzo todo lo del body y a la propiedad 'password' la piso con este nuevo valor
+			};
 
 			// guardo al usuario (userData) en la base de datos
-			const user = await userDB.save(userData);
+			const user = await userDB.save(data);
 
 			// respuesta al cliente
 			done(null, user); // done(error, lo que devuelvo)
@@ -92,5 +95,5 @@ passport.deserializeUser(async (id, done) => {
 	const user = await userDB.UserById(id);
 
 	// en user tengo los datos que serialice en serializeUser
-	done(null, user);
+	done(null, user); // creo que el app.locals 'user' lo genero aca
 });

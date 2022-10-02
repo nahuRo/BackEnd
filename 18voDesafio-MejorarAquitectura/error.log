@@ -1,0 +1,44 @@
+[2022-09-14T21:44:00.335] [ERROR] archivoError - ReferenceError: cantRandoms is not defined
+    at C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\routes\index.js:185:25
+    at Layer.handle [as handle_request] (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:47:12)
+[2022-09-14T21:44:45.630] [ERROR] archivoError - ReferenceError: cantRandoms is not defined
+    at C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\routes\index.js:186:25
+    at Layer.handle [as handle_request] (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:47:12)
+[2022-09-14T21:44:46.614] [ERROR] archivoError - ReferenceError: cantRandoms is not defined
+    at C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\routes\index.js:186:25
+    at Layer.handle [as handle_request] (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:47:12)
+[2022-09-14T21:44:59.356] [ERROR] archivoError - ReferenceError: cantRandoms is not defined
+    at C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\routes\index.js:186:25
+    at Layer.handle [as handle_request] (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:47:12)

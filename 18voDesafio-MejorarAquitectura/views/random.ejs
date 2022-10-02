@@ -1,0 +1,46 @@
+<%- layout('layouts/main.ejs') %>
+
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="card mt-4 text-center">
+                <div class="card-header">
+                    Generar numeros randoms
+                </div>
+                <div class="card-body">
+                    <form action="/api/randoms" method="post">
+                        <div class="form-group">
+                            <input type="number" name="numberR" placeholder="numero random" class="form-control">
+                        </div>
+                        <button class="btn btn-primary w-100 mt-4">Generar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <% if (Object.keys(repetidos).length> 0 ) {%>
+            <table class="table table-hover  w-50">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Numero</th>
+                        <th scope="col">Numero de repeticiones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% Object.entries(repetidos).forEach(([key, value])=> { %>
+                        <tr>
+                            <th scope="row">
+                                <%= key %>
+                            </th>
+                            <td>
+                                <%= value %>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+            <% } else {%>
+                sin argumentos de entrada
+                <% } %>
+    </div>
