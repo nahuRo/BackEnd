@@ -1,0 +1,65 @@
+<%- layout('layouts/main.ejs') %>
+    <div class="row">
+
+        <% if (products.length> 0 ) {%>
+            <% products.forEach(function(prod){ %>
+                <div class="col-md-4 ">
+                    <div class="card" style="width: 18rem;">
+                        <img src=<%=prod.thumbnail%> class="card-img-top" alt=<%= prod.tittle%>>
+                            <div class="card-body">
+                                <h2>
+                                    <%= prod.tittle%>
+                                </h2>
+                                <p class="card-text">
+                                    <%= prod.description%>
+                                </p>
+                                <h4>
+                                    <%= prod.price%>
+                                </h4>
+                                <h5>
+                                    <%= prod.stock%>
+                                </h5>
+                            </div>
+                    </div>
+                </div>
+
+                <% }); %>
+
+                    <% } else {%>
+                        sin products en el carrito
+                        <% } %>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="card mt-4 text-center">
+                <div class="card-header">
+                    Productos
+                </div>
+                <div class="card-body">
+                    <form action="/products" method="post">
+                        <div class="form-group">
+                            <input type="text" name="tittle" placeholder="tittle" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="price" placeholder="price" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="thumbnail" placeholder="thumbnail" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="description" placeholder="description" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="stock" placeholder="stock" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="codeBar" placeholder="codeBar" class="form-control">
+                        </div>
+                        <button class="btn btn-primary w-100 mt-4">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
