@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const route = Router();
 
+const { config } = require("../utils/config");
+
 const passport = require("passport");
 
 const util = require("util");
@@ -57,14 +59,22 @@ const loggerInfo = log4js.getLogger("default");
 const loggerArchivoW = log4js.getLogger("archivoWarn");
 const loggerArchivoE = log4js.getLogger("archivoError");
 
-const prodModel = require("../database/models/prodModel");
+// const prodModel = require("../database/models/prodModel");
+// const { prodClassMongo } = require("../utils/constructorProd");
+// const ProdCreate = new prodClassMongo("products", prodModel);
+
 const cartModel = require("../database/models/cartModel");
-
-const { prodClassMongo } = require("../utils/constructorProd");
 const { cartGenMon } = require("../utils/constructorCart");
-
 const CartCreate = new cartGenMon("carts", cartModel);
-const ProdCreate = new prodClassMongo("products", prodModel);
+
+// array de pedido
+let ProdArrayCart = [];
+
+// nodemailer
+const { transporter } = require("../utils/email");
+
+// sms twilio
+const { client } = require("../utils/twilio");
 
 route
 	.post(
@@ -108,6 +118,7 @@ route
 
 	.get("/logout", (req, res) => {
 		req.logout((err) => {
+			ProdArrayCart = [];
 			if (err) return next(err);
 			res.redirect("/login");
 		});
@@ -149,25 +160,47 @@ route
 		res.redirect("/products");
 	})
 
-	.get("/info", isAuthenticated, (req, res) => {
+	.get("/orden", isAuthenticated, async (req, res) => {
 		try {
-			res.render("info", {
-				argumentsEntri: args, // puerto
-				systemName: process.platform,
-				nodeV: process.version,
-				memory: util.inspect(process.memoryUsage()),
-				pathEjecusion: process.execPath,
-				idPross: process.pid,
-				ruta: process.cwd(),
-				cpus: os.cpus().length,
-				mensaje,
-			});
+			res.render("orden", { ProdArrayCart });
 		} catch (error) {
 			loggerArchivoE.error(error);
 		}
 	})
 
-	.get("/infoGzip", isAuthenticated, compression(), (req, res) => {
+	.post("/cart", isAuthenticated, async (req, res) => {
+		const myCart = await CartCreate.getByNameCart(req.user.email);
+		const { products } = myCart[0];
+		ProdArrayCart = [...products];
+
+		// envio de pedido via mail
+		await transporter.sendMail({
+			from: "Server Node.js",
+			to: config.TO_MAIL, // mail al que le envio el mensaje
+			subject: `Nuevo Pedido de: ${req.user.name} con email: ${req.user.email}`,
+			html: ProdArrayCart.map((prod) => {
+				return `<h1 style="color:blue">Articulo</h1><h3>Nombre: ${prod.tittle}</h3><h3>Precio: ${prod.price}</h3><h3>Descripción: ${prod.description}</h3><h3>codeBar: ${prod.codeBar}</h3><img style="width:300px" src=${prod.thumbnail}/>`;
+			}).toString(),
+		});
+
+		// envio de sms twilio
+		await client.messages.create({
+			body: "Su pedido ha sido recibido y se encuentra en proceso",
+			messagingServiceSid: "MG7cf0cd35d95730fa35f667086c3652b4",
+			to: config.toNumberSms,
+		});
+
+		// envio de whatsapp twilio
+		await client.messages.create({
+			body: `Nuevo Pedido\n\nde: ${req.user.name}\ncon email: ${req.user.email}`,
+			from: `whatsapp:${config.wspTwilioNumber}`,
+			to: `whatsapp:${config.toNumberSms}`,
+		});
+
+		res.redirect("/orden");
+	})
+
+	.get("/info", isAuthenticated, compression(), (req, res) => {
 		try {
 			res.render("info", {
 				argumentsEntri: args, // puerto

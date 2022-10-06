@@ -1,0 +1,25 @@
+<%- layout('layouts/main.ejs') %>
+
+    <div class="row">
+        <div class="alert alert-primary text-center col" role="alert">
+            <h1>Pedido Realizado con exito!</h1>
+        </div>
+    </div>
+    <div class="row">
+        <% ProdArrayCart.forEach(function(prod){ %>
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img src=<%=prod.thumbnail%> class="card-img-top" alt=<%= prod.tittle%>>
+                        <div class="card-body">
+                            <h2>
+                                <%= prod.tittle%>
+                            </h2>
+                            <h4>
+                                $ <%= prod.price%>
+                            </h4>
+                        </div>
+                </div>
+            </div>
+
+            <% }); %>
+    </div>

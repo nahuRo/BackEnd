@@ -18,11 +18,16 @@ const comparePassword = (password, dbPassword) => {
 	return bcrypt.compareSync(password, dbPassword); // retorna booleano
 };
 
+// productos/cart
 const cartModel = require("../database/models/cartModel");
 
 const { cartGenMon } = require("../utils/constructorCart");
 
 const CartCreate = new cartGenMon("carts", cartModel);
+
+// nodemailer
+const { transporter } = require("../utils/email");
+const { config } = require("../utils/config");
 
 // 1 ---- ESTRATEGIAS DE PASSPORT (logica) ----
 
@@ -45,11 +50,26 @@ passport.use(
 			const users = await userDB.getAll();
 			const buscado = users.find((user) => user.email === username);
 
+			if (buscado) return done(null, false, req.flash("registerMsg", "The Email is already taken"));
+
 			// cart
 			const theCart = await CartCreate.getByNameCart(username);
 			if (theCart.length === 0) await CartCreate.create(username);
 
-			if (buscado) return done(null, false, req.flash("registerMsg", "The Email is already taken"));
+			// mail
+			const mailOptions = {
+				from: "Server Node.js",
+				to: config.TO_MAIL, // mail al que le envio el mensaje
+				subject: "Nuevo Registro",
+				html: `<h1 style="color:blue">Datos del Nuevo Usuario</h1>
+				<h3>Nombre: ${req.body.name}</h3>
+				<h3>Mail: ${username}</h3>
+				<h3>Dirección: ${req.body.address}</h3>
+				<h3>Edad: ${req.body.age}</h3>
+				<h3>Teléfono: ${req.body.phone}</h3>`,
+			};
+			const info = await transporter.sendMail(mailOptions);
+			console.log(info);
 
 			let data = {
 				...req.body,

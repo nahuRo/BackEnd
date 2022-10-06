@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-require("dotenv").config();
+const { config } = require("./utils/config");
 
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
@@ -44,21 +44,17 @@ app.set("view engine", "ejs");
 
 // ---- Middleware ----
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // el extend es para decirle que voy a recibir imagenes o archivos pesados, ademas de los datos 'simples' del formulario
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
 // session
 app.use(
 	session({
-		secret: process.env.SESSION_SECRET,
+		secret: config.SESSION_SECRET,
 		resave: false,
-		rolling: true, // para que se resetee el tiempo de expiracion al hacer una petision
+		rolling: true,
 		saveUninitialized: false,
-		// con la cookie me da un error el  req.isAuthenticated() , como que me lo reinicia por mas que le aumente el maxAge
-		// cookie: {
-		// 	maxAge: 3000,
-		// },
 	})
 );
 
