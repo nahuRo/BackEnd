@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-class cartGenMon {
+class cartDao {
 	constructor(nameCollection, schema) {
 		this.collection = mongoose.model(nameCollection, schema);
 	}
@@ -44,4 +44,4 @@ class cartGenMon {
 	}
 }
 
-module.exports = { cartGenMon };
+module.exports = { cartDao };

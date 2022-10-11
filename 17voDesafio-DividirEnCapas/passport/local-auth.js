@@ -4,10 +4,13 @@ const localStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 
 // instancia de la base de datos
+const { userDao } = require("../database/daos/user.dao");
 const userModel = require("../database/models/userModel");
-const { userClassMongo } = require("../utils/constructorUser");
+const userDB = new userDao("users", userModel);
 
-const userDB = new userClassMongo("users", userModel);
+const { cartDao } = require("../database/daos/cart.dao");
+const cartModel = require("../database/models/cartModel");
+const CartCreate = new cartDao("carts", cartModel);
 
 // ---- BCRIPT ----
 const encriptar = (password) => {
@@ -17,12 +20,6 @@ const encriptar = (password) => {
 const comparePassword = (password, dbPassword) => {
 	return bcrypt.compareSync(password, dbPassword); // retorna booleano
 };
-
-const cartModel = require("../database/models/cartModel");
-
-const { cartGenMon } = require("../utils/constructorCart");
-
-const CartCreate = new cartGenMon("carts", cartModel);
 
 // 1 ---- ESTRATEGIAS DE PASSPORT (logica) ----
 

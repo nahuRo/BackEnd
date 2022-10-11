@@ -42,3 +42,24 @@
     at next (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:280:10)
     at Function.handle (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:175:3)
     at router (C:\Users\Usuario\Desktop\Back-End\14voDesafio-Loggers,gZip\server\node_modules\express\lib\router\index.js:47:12)
+[2022-10-03T20:10:57.756] [ERROR] archivoError - ReferenceError: app is not defined
+    at C:\Users\Usuario\Desktop\Back-End\16voDesafio-3eraEntregaFinal\routes\index.js:136:16
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-10-03T20:10:59.776] [ERROR] archivoError - ReferenceError: app is not defined
+    at C:\Users\Usuario\Desktop\Back-End\16voDesafio-3eraEntregaFinal\routes\index.js:136:16
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-10-03T20:11:07.398] [ERROR] archivoError - ReferenceError: app is not defined
+    at C:\Users\Usuario\Desktop\Back-End\16voDesafio-3eraEntregaFinal\routes\index.js:136:16
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-10-03T20:11:36.810] [ERROR] archivoError - ReferenceError: app is not defined
+    at C:\Users\Usuario\Desktop\Back-End\16voDesafio-3eraEntregaFinal\routes\index.js:136:16
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-10-03T20:21:32.143] [ERROR] archivoError - ReferenceError: produtosDB is not defined
+    at C:\Users\Usuario\Desktop\Back-End\16voDesafio-3eraEntregaFinal\routes\index.js:138:29
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-10-03T20:22:34.734] [ERROR] archivoError - ReferenceError: produtosDB is not defined
+    at C:\Users\Usuario\Desktop\Back-End\16voDesafio-3eraEntregaFinal\routes\index.js:138:29
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-10-03T20:23:03.711] [ERROR] archivoError - ReferenceError: produtosDB is not defined
+    at C:\Users\Usuario\Desktop\Back-End\16voDesafio-3eraEntregaFinal\routes\index.js:138:29
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)

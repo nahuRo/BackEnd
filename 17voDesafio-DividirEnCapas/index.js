@@ -1,20 +1,16 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const { config } = require("./utils/config");
-
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
-
-const { ConnectionDB } = require("./database/config/configMongo");
-
 const passport = require("passport");
-
 const engine = require("ejs-mate");
-
 const flash = require("connect-flash");
-
 const yargs = require("yargs")(process.argv.slice(2));
+
+const { config } = require("./utils/config");
+const { ConnectionDB } = require("./database/config/configMongo");
+const { loggerInfo } = require("./utils/logger");
 
 const args = yargs
 	.alias({
@@ -23,19 +19,6 @@ const args = yargs
 	.default({
 		puerto: 8080,
 	}).argv;
-
-const log4js = require("log4js");
-
-log4js.configure({
-	appenders: {
-		miLoggerConsole: { type: "console" },
-	},
-	categories: {
-		default: { appenders: ["miLoggerConsole"], level: "info" },
-	},
-});
-
-const loggerInfo = log4js.getLogger("default");
 
 // configuraciones ejs
 app.set("views", path.join(__dirname, "./views"));
@@ -77,13 +60,11 @@ app.use((req, res, next) => {
 	next();
 });
 
-// middleware de desafio
+// middleware para loggers
 app.use((req, res, next) => {
 	loggerInfo.info(req.method, req.url);
 	next();
 });
-
-// ----
 
 // conexion a la DB
 ConnectionDB();

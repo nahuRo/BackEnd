@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-class userClassMongo {
+class userDao {
 	constructor(nameCollection, schema) {
 		this.collection = mongoose.model(nameCollection, schema);
 	}
@@ -29,4 +29,4 @@ class userClassMongo {
 	}
 }
 
-module.exports = { userClassMongo };
+module.exports = { userDao };

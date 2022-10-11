@@ -4,10 +4,13 @@ const localStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 
 // instancia de la base de datos
+const { userDao } = require("../database/daos/user.dao");
 const userModel = require("../database/models/userModel");
-const { userClassMongo } = require("../utils/constructorUser");
+const userDB = new userDao("users", userModel);
 
-const userDB = new userClassMongo("users", userModel);
+const { cartDao } = require("../database/daos/cart.dao");
+const cartModel = require("../database/models/cartModel");
+const CartCreate = new cartDao("carts", cartModel);
 
 // ---- BCRIPT ----
 const encriptar = (password) => {
@@ -38,6 +41,10 @@ passport.use(
 			// logica par registrar un usuario en la base de datos
 			const users = await userDB.getAll();
 			const buscado = users.find((user) => user.email === username);
+
+			// cart
+			const theCart = await CartCreate.getByNameCart(username);
+			if (theCart.length === 0) await CartCreate.create(username);
 
 			if (buscado) return done(null, false, req.flash("registerMsg", "The Email is already taken"));
 

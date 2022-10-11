@@ -1,20 +1,16 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-require("dotenv").config();
-
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
-
-const { ConnectionDB } = require("./database/config/configMongo");
-
 const passport = require("passport");
-
 const engine = require("ejs-mate");
-
 const flash = require("connect-flash");
-
 const yargs = require("yargs")(process.argv.slice(2));
+
+const { config } = require("./utils/config");
+const { ConnectionDB } = require("./database/config/configMongo");
+const { loggerInfo } = require("./utils/logger");
 
 const args = yargs
 	.alias({
@@ -24,19 +20,6 @@ const args = yargs
 		puerto: 8080,
 	}).argv;
 
-const log4js = require("log4js");
-
-log4js.configure({
-	appenders: {
-		miLoggerConsole: { type: "console" },
-	},
-	categories: {
-		default: { appenders: ["miLoggerConsole"], level: "info" },
-	},
-});
-
-const loggerInfo = log4js.getLogger("default");
-
 // configuraciones ejs
 app.set("views", path.join(__dirname, "./views"));
 app.engine("ejs", engine);
@@ -44,21 +27,17 @@ app.set("view engine", "ejs");
 
 // ---- Middleware ----
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // el extend es para decirle que voy a recibir imagenes o archivos pesados, ademas de los datos 'simples' del formulario
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
 // session
 app.use(
 	session({
-		secret: process.env.SESSION_SECRET,
+		secret: config.SESSION_SECRET,
 		resave: false,
-		rolling: true, // para que se resetee el tiempo de expiracion al hacer una petision
+		rolling: true,
 		saveUninitialized: false,
-		// con la cookie me da un error el  req.isAuthenticated() , como que me lo reinicia por mas que le aumente el maxAge
-		// cookie: {
-		// 	maxAge: 3000,
-		// },
 	})
 );
 
@@ -76,17 +55,16 @@ app.use((req, res, next) => {
 	app.locals.loginMsg = req.flash("loginMsg");
 
 	app.locals.user = req.user; // app.locals.user , es como crear una variable global para toda la app
+	// CON 'req.user' OBTENGO LOS DATOS DEL USUARIO ACTUAL, EL QUE HACE EL LOGIN
 	// console.log("LOCALS", app.locals.user);
 	next();
 });
 
-// middleware de desafio
+// middleware para loggers
 app.use((req, res, next) => {
 	loggerInfo.info(req.method, req.url);
 	next();
 });
-
-// ----
 
 // conexion a la DB
 ConnectionDB();

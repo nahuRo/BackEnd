@@ -2,6 +2,7 @@ const { Router } = require("express");
 const route = Router();
 
 const { sessionC, infoC, productsC, viewsC } = require("../controllers/index");
+const { loggerArchivoW, loggerInfo } = require("../utils/logger");
 
 const compression = require("compression");
 
@@ -45,9 +46,8 @@ route
 	// Atajo URLs no validas
 
 	.use((req, res) => {
-		console.log("ruta no implementada");
-		// loggerInfo.warn("ruta no implementada");
-		// loggerArchivoW.warn("ruta no implementada");
+		loggerInfo.warn("ruta no implementada");
+		loggerArchivoW.warn("ruta no implementada");
 		res.status(404).json({
 			error: -1,
 			descripcion: req.path,
